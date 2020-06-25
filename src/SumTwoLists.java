@@ -1,49 +1,37 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SumTwoLists {
 
-    //First approach
+    //Second approach and the correct one
     public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
         if(l1 == null && l2 == null) return null;
-        if(l1 == null) return l2;
         if(l2 == null) return l1;
-        ArrayList<Integer> arrL1 = new ArrayList<>();
-        ArrayList<Integer> arrL2 = new ArrayList<>();
-        ListNode current = l1;
-        while (current != null){
-            arrL1.add(current.val);
-            current = current.next;
+        if(l1 == null) return l2;
+
+        ListNode returnedList = new ListNode();
+        ListNode currentL1 = l1;
+        ListNode currentL2 = l2;
+        ListNode currentReturnedList = returnedList;
+        int carriage = 0;
+        int sum;
+        while (currentL1 != null || currentL2 != null){
+            int valL1 = currentL1 == null ? 0:currentL1.val;
+            int valL2 = currentL2 == null ? 0:currentL2.val;
+            sum = carriage + valL1 + valL2;
+
+            carriage = sum >= 10 ? sum/10 : 0;
+            sum = sum >= 10 ? sum%10 : sum;
+
+            currentReturnedList.next = new ListNode(sum);
+            currentReturnedList = currentReturnedList.next;
+
+            currentL1 = currentL1 == null ? null : currentL1.next;
+            currentL2 = currentL2 == null ? null : currentL2.next;
         }
 
-        current = l2;
-        while (current!=null){
-            arrL2.add(current.val);
-            current = current.next;
-        }
-        int numL1 = reverseArray(arrL1);
-        int numL2 = reverseArray(arrL2);
-        int sum = numL1 + numL2;
-        char[] sumArray = (""+sum).toCharArray();
-        int index = sumArray.length-1;
-        if(numL1>numL2){
-            current = l1;
-            while (current != null){
-                current.val = Integer.parseInt(""+ sumArray[index]);
-                current = current.next;
-                index--;
-            }
-            return l1;
-        }else{
-            current = l2;
-            while (current != null){
-                current.val = Integer.parseInt(""+ sumArray[index]);
-                current = current.next;
-                index--;
-            }
-            return l2;
-        }
+        if(carriage>0)currentReturnedList.next = new ListNode(carriage);
+
+        return returnedList.next;
     }
 
     private static int reverseArray(ArrayList<Integer> array){
