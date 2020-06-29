@@ -16,7 +16,7 @@ public class FlattenMultilevel {
 
         Node pointer2 = head;
 
-        while (pointer2.next != null){
+        while (pointer2.next != null || pointer2.child != null){
             if(pointer2.child == null){
                 newCurrent.next = pointer2;
                 newCurrent = newCurrent.next;
@@ -40,11 +40,12 @@ public class FlattenMultilevel {
                 //System.out.println("");
 
 
-                newCurrent = newCurrent.next;
+                //newCurrent = newCurrent.next;
                 pointer2 = newCurrent.next;
 
             }
         }
+        printNodes(headNew);
 
         Node slowChain = headNew.next;
         Node chain = headNew.next.next;
