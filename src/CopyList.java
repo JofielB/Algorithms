@@ -15,40 +15,34 @@ public class CopyList {
         //Now we assign the correct nodes to the random ones
         currentCopied = headCopiedList.next;
         currentOriginal = head;
-        while (currentCopied != null){
-            if(currentOriginal.random == null) {
+
+        while(currentCopied != null){
+            if(currentOriginal.random == null){
                 currentCopied = currentCopied.next;
                 currentOriginal = currentOriginal.next;
-            }else{
-                int randomVal = currentOriginal.random.val;
-                Node currentIndex = headCopiedList.next;
-                if(currentOriginal.random.next == null){
 
-                    while (currentIndex != null){
-                        if(currentIndex.val == randomVal && currentIndex.next == null){
-                            currentCopied.random = currentIndex;
-                            currentIndex = new Node(0);
-                        }
-                        currentIndex =currentIndex.next;
-                    }
-
-                }else {
-                    int randomNextVal = currentOriginal.random.next.val;
-                    while (currentIndex != null){
-                        if(randomVal == currentIndex.val && randomNextVal == currentIndex.next.val){
-                            currentCopied.random = currentIndex;
-                            currentIndex = new Node(0);
-                        }
-                        currentIndex  = currentIndex.next;
-                    }
+            }else {
+                int index = 0;
+                Node indexOriginal = head;
+                //First we found the index of the random node
+                while (indexOriginal != currentOriginal.random){
+                    indexOriginal = indexOriginal.next;
+                    index++;
                 }
+                //Then we connect the correct node random to the new list
+                Node indexNewHead = headCopiedList.next;
+                for (int i = 0; i <index ; i++) {
+                    indexNewHead = indexNewHead.next;
+                }
+                currentCopied.random = indexNewHead;
+
                 currentCopied = currentCopied.next;
                 currentOriginal = currentOriginal.next;
             }
         }
-
         return headCopiedList.next;
     }
+
     class Node {
         int val;
         Node next;
