@@ -19,11 +19,6 @@ public class CircularQueue {
      * Insert an element into the circular queue. Return true if the operation is successful.
      */
     public boolean enQueue(int value) {
-
-        for (int val: queue) {
-            System.out.print(val +", ");
-        }
-        System.out.print("   " + rear);
         if (size <= 0) return false;
         if(first){
             queue[front] = value;
@@ -50,12 +45,10 @@ public class CircularQueue {
         if (size <= 0) return false;
         if (front == rear && !first){
             queue[front] = -1;
-            front = front + 1 >= size ? 0 : front + 1;
-            front = Math.min(front, rear);
+            first = true;
             return true;
         }
-        if (front == rear) return false;
-
+        if (front == rear ) return false;
         queue[front] = -1;
         front = front + 1 >= size ? 0 : front + 1;
         return true;
@@ -79,7 +72,7 @@ public class CircularQueue {
      * Checks whether the circular queue is empty or not.
      */
     public boolean isEmpty() {
-        return front == rear;
+        return queue[front] == -1;
     }
 
     /**
