@@ -5,38 +5,25 @@ public class ValidateBST {
         if (root == null) return true;
         if (root.left == null && root.right == null) return true;
 
-        return exploreTree(root, root, -1);
+        return exploreTree(root, null, null);
     }
 
-    private static boolean exploreTree(TreeNode node, TreeNode root,int direction){
-        boolean stateLeft = true;
-        boolean stateRight = true;
-        boolean statement = true;
-        if(direction==0){
-            statement = root.val > node.val;
-        }else if(direction == 1){
-            statement = root.val < node.val;
-        }
-        if(node.left != null){
-            int dir = direction == -1 ? 0:direction;
-            stateLeft =  node.val > node.left.val;
-            if(stateLeft) {
-                stateLeft = exploreTree(node.left, root,dir);
-            }
-        }
-        if(node.right != null){
-            int dir = direction == -1 ? 1:direction;
-            stateRight = node.val < node.right.val;
-            if (stateRight) {
-                stateRight = exploreTree(node.right, root,dir) ;
-            }
-        }
+    private static boolean exploreTree(TreeNode node, Integer valueLeft, Integer valueRight){
+        //Verify if the node its null and return true to stop the recursion
+        if(node == null) return  true;
 
-        if(stateLeft && stateRight && statement) {
-            return true;
-        }else {
-            return false;
-        }
+        //Get the value of the current node
+        int value = node.val;
+
+        //Check if its a left node or a right node and check if the value is accepted
+        if(valueLeft != null && value <= valueLeft) return false;
+        if(valueRight != null && value >= valueRight) return false;
+
+        //Access to a lowe level
+        if(! exploreTree(node.right, value, valueRight)) return false;
+        if(! exploreTree(node.left, valueLeft, value)) return false;
+
+        return  true;
     }
 
     public static class TreeNode {
