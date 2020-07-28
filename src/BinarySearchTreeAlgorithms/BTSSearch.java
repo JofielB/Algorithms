@@ -1,4 +1,4 @@
-package BinaryTreeAlgorithms;
+package BinarySearchTreeAlgorithms;
 
 public class BTSSearch {
     public TreeNode searchBST(TreeNode root, int val) {

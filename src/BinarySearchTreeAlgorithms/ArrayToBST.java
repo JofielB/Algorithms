@@ -1,6 +1,5 @@
-package BinaryTreeAlgorithms;
+package BinarySearchTreeAlgorithms;
 
-import java.sql.Array;
 import java.util.Arrays;
 
 public class ArrayToBST {

@@ -1,4 +1,4 @@
-package BinaryTreeAlgorithms;
+package BinarySearchTreeAlgorithms;
 
 public class BTSDeleteNode {
     public TreeNode deleteNode(TreeNode root, int key) {

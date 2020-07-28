@@ -1,4 +1,4 @@
-package BinaryTreeAlgorithms;
+package BinarySearchTreeAlgorithms;
 
 public class ValidateBST {
     public static boolean isValidBST(TreeNode root) {

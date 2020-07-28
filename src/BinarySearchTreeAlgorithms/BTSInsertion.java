@@ -1,4 +1,4 @@
-package BinaryTreeAlgorithms;
+package BinarySearchTreeAlgorithms;
 
 public class BTSInsertion {
     public TreeNode insertIntoBST(TreeNode root, int val) {
