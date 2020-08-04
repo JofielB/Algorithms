@@ -1,10 +1,38 @@
 package BinaryTreeAlgorithms;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class BTLevelOrder {
 
+    // USING QUEUE
+    public List<List<Integer>> levelOrderQueue(TreeNode root) {
+        List <List<Integer>> list = new ArrayList<>();
+        if(root == null)  return list;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty())
+        {
+         int size = queue.size();
+         List<Integer> currentList = new ArrayList<>();
+         for (int i = 0; i < size; i++)
+         {
+             TreeNode currentNode = queue.remove();
+             currentList.add(currentNode.val);
+             if(currentNode.left != null) queue.add(currentNode.left);
+             if(currentNode.right != null) queue.add(currentNode.right);
+         }
+         list.add(currentList);
+        }
+
+        return list;
+    }
+
+    // WORKS BUT DO NOT USE A QUEUE
     public List<List<Integer>> levelOrder(TreeNode root) {
         List <List<Integer>> list = new ArrayList<>();
 
