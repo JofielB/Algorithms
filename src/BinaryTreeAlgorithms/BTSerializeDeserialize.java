@@ -1,19 +1,36 @@
 package BinaryTreeAlgorithms;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BTSerializeDeserialize {
 
     // Encodes a tree to a single string.
     public static String serialize(TreeNode root) {
-        StringBuilder serializeTree = new StringBuilder();
-        serialize(root, serializeTree);
-        System.out.println(serializeTree.toString());
-        return serializeTree.toString();
-    }
+        StringBuilder sTree = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            int size = queue.size();
 
-    private static void serialize(TreeNode node, StringBuilder stringBuilder) {
-        stringBuilder.append(node.val);
-        if (node.left != null) serialize(node.left, stringBuilder);
-        if (node.right != null) serialize(node.right, stringBuilder);
+            for (int i = 0; i <size ; i++) {
+                TreeNode current = queue.remove();
+                sTree.append(current.val+ "");
+                if(current.left == null){
+                    sTree.append("#");
+                }else {
+                    queue.add(current.left);
+                }
+                if(current.right == null){
+                    sTree.append("#");
+                }else {
+                    queue.add(current.right);
+                }
+
+            }
+        }
+        return sTree.toString();
     }
 
     // Decodes your encoded data to tree.
