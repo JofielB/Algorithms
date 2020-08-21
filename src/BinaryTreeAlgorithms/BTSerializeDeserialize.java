@@ -15,9 +15,9 @@ public class BTSerializeDeserialize {
     }
 
     private static void buildStringTree(TreeNode node, StringBuilder stringBuilder) {
-        if(node == null) stringBuilder.append("@");
+        if(node == null) stringBuilder.append("@,");
         else{
-            stringBuilder.append(node.val + "");
+            stringBuilder.append(node.val + ",");
             buildStringTree(node.left, stringBuilder);
             buildStringTree(node.right, stringBuilder);
         }
@@ -39,9 +39,8 @@ public class BTSerializeDeserialize {
     //TODO Add "," at serialize the tree to know when the number ends
     private static TreeNode createTree(Queue<String> queue){
         if(queue.isEmpty()) return null;
-        String current = queue.remove();
+        String current = getFullNumber(queue);
         if(current.equals("@")) return null;
-        if(current.equals("-")) current += queue.remove();
         int val = Integer.parseInt(current);
         TreeNode node = new TreeNode(val);
         node.left = createTree(queue);
@@ -49,6 +48,15 @@ public class BTSerializeDeserialize {
         return node;
     }
 
+    private static String getFullNumber(Queue<String> queue) {
+        StringBuilder fullString = new StringBuilder();
+        String current = queue.remove();
+        while (!current.equals(",")){
+            fullString.append(current);
+            current = queue.remove();
+        }
+        return fullString.toString();
+    }
     public static class TreeNode {
         int val;
         TreeNode left;
@@ -63,11 +71,13 @@ public class BTSerializeDeserialize {
         TreeNode node = new TreeNode(1);
         node.left = new TreeNode(9);
         node.right = new TreeNode(2);
-        node.left.left = new TreeNode(8);
+        node.left.left = new TreeNode(-28);
         node.left.right = new TreeNode(10);
         String s = serialize(node);
         System.out.println(s);
-        System.out.println(deserialize(s));
+        System.out.println("New tree:");
+        TreeNode test = deserialize(s);
+        System.out.println(serialize(test));
 
     }
 }
