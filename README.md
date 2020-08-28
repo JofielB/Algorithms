@@ -21,5 +21,5 @@ https://leetcode.com/explore/learn/card/data-structure-tree/
 ### - N-ary Tree.  Introducion to Data Structure
 https://leetcode.com/explore/learn/card/n-ary-tree/130/traversal/
 
-### - Trie.  Introducion to Data Structure (In progress)
-https://leetcode.com/explore/learn/card/trie/
+### - Hash Table.  Introducion to Data Structure (In progress)
+https://leetcode.com/explore/learn/card/hash-table/
