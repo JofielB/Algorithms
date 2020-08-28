@@ -1,7 +1,7 @@
 # Algorithms
 In this repo I will be uploading my own solution for different algorithms. Until now all the algorithms can be found in LeetCode.
 
-## Topics Covered Untill Now (21/08/2020)
+## Topics Covered Untill Now (28/08/2020)
 
 ### - Arrays 101. Introducion to Data Structure
 https://leetcode.com/explore/learn/card/fun-with-arrays/
@@ -18,5 +18,8 @@ https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-se
 ### - Binary Tree.  Introducion to Data Structure
 https://leetcode.com/explore/learn/card/data-structure-tree/
 
-### - N-ary Tree.  Introducion to Data Structure (In progress)
+### - N-ary Tree.  Introducion to Data Structure
 https://leetcode.com/explore/learn/card/n-ary-tree/130/traversal/
+
+### - Trie.  Introducion to Data Structure (In progress)
+https://leetcode.com/explore/learn/card/trie/
